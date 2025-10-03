@@ -1,0 +1,23 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: gcp-oauth2-client
+
+# GCP Configuration
+gcp:
+  project-id: ${GCP_PROJECT_ID:rest-app-008}
+  # Path to service account key (optional, uses Application Default Credentials if not set)
+  credentials-path: ${GCP_CREDENTIALS_PATH:}
+
+# Target API Configuration
+target-api:
+  base-url: ${TARGET_API_URL:http://localhost:8080}
+  # The audience claim for the ID token (usually the URL of the service you're calling)
+  audience: ${TARGET_API_AUDIENCE:http://localhost:8080}
+
+logging:
+  level:
+    root: INFO
+    com.example: DEBUG
