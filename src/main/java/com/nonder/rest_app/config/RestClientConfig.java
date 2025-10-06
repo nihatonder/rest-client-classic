@@ -7,15 +7,14 @@ import org.springframework.web.client.RestClient;
 
 import java.time.Duration;
 
-@Configuration
 public class RestClientConfig {
-    
+
     private final OAuth2ClientInterceptor oauth2Interceptor;
-    
+
     public RestClientConfig(OAuth2ClientInterceptor oauth2Interceptor) {
         this.oauth2Interceptor = oauth2Interceptor;
     }
-    
+
     @Bean
     public RestClient restClient() {
         return RestClient.builder()

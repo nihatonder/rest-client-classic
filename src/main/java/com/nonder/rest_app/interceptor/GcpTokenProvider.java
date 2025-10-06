@@ -12,19 +12,18 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Arrays;
 
-@Component
 public class GcpTokenProvider {
-    
+
     private static final Logger log = LoggerFactory.getLogger(GcpTokenProvider.class);
-    
+
     @Value("${gcp.credentials-path:}")
     private String credentialsPath;
-    
-    @Value("${target-api.audience}")
+
+    @Value("${target.api.audience}")
     private String audience;
-    
+
     private GoogleCredentials credentials;
-    
+
     /**
      * Gets an ID token from GCP for the configured audience.
      * This token can be used to authenticate with OAuth2 protected services.
@@ -33,22 +32,22 @@ public class GcpTokenProvider {
         if (credentials == null) {
             credentials = loadCredentials();
         }
-        
+
         IdTokenProvider idTokenProvider = (IdTokenProvider) credentials;
-        
+
         // Request ID token with the target audience
         IdTokenCredentials tokenCredential = IdTokenCredentials.newBuilder()
                 .setIdTokenProvider(idTokenProvider)
                 .setTargetAudience(audience)
                 .build();
-        
+
         tokenCredential.refresh();
         String token = tokenCredential.getIdToken().getTokenValue();
-        
+
         log.debug("Successfully retrieved ID token for audience: {}", audience);
         return token;
     }
-    
+
     /**
      * Gets an access token from GCP.
      * Use this if your target API requires an access token instead of an ID token.
@@ -57,17 +56,17 @@ public class GcpTokenProvider {
         if (credentials == null) {
             credentials = loadCredentials();
         }
-        
+
         credentials.refreshIfExpired();
         String token = credentials.getAccessToken().getTokenValue();
-        
+
         log.debug("Successfully retrieved access token");
         return token;
     }
-    
+
     private GoogleCredentials loadCredentials() throws IOException {
         GoogleCredentials creds;
-        
+
         if (credentialsPath != null && !credentialsPath.isEmpty()) {
             log.info("Loading credentials from file: {}", credentialsPath);
             try (FileInputStream serviceAccountStream = new FileInputStream(credentialsPath)) {
@@ -77,7 +76,7 @@ public class GcpTokenProvider {
             log.info("Loading Application Default Credentials");
             creds = GoogleCredentials.getApplicationDefault();
         }
-        
+
         // Create scoped credentials for OAuth2
         return creds.createScoped(Arrays.asList(
                 "https://www.googleapis.com/auth/cloud-platform",

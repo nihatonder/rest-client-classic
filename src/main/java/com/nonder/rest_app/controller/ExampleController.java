@@ -1,11 +1,12 @@
 package com.nonder.rest_app.controller;
 
 import com.nonder.rest_app.client.ProtectedApiClient;
+import org.springframework.stereotype.Controller; // <-- Import this
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ResponseBody; // <-- And this
 
-@RestController
+@Controller // <-- ADD THIS ANNOTATION
 @RequestMapping("/api")
 public class ExampleController {
 
@@ -15,10 +16,8 @@ public class ExampleController {
         this.apiClient = apiClient;
     }
 
-    /**
-     * Public endpoint (no OAuth2 required) that calls the protected service
-     */
     @GetMapping("/test")
+    @ResponseBody // <-- ADD THIS ANNOTATION
     public String callProtectedService() {
         try {
             String response = apiClient.get("/secure/hello", String.class);
@@ -28,10 +27,8 @@ public class ExampleController {
         }
     }
 
-    /**
-     * Public endpoint (no OAuth2 required) - your own service
-     */
     @GetMapping("/hello")
+    @ResponseBody // <-- ADD THIS ANNOTATION
     public String hello() {
         return "Hello from the REST client app!";
     }

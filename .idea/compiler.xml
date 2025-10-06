@@ -12,7 +12,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="rest-client" options="-parameters" />
+      <module name="rest-client" options="" />
     </option>
   </component>
 </project>

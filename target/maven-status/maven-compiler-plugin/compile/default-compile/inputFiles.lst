@@ -1,6 +1,7 @@
-/Users/nihat.onder/Documents/devarea/sandbox/rest-client/src/main/java/com/nonder/rest_app/RestAppApplication.java
-/Users/nihat.onder/Documents/devarea/sandbox/rest-client/src/main/java/com/nonder/rest_app/client/ProtectedApiClient.java
-/Users/nihat.onder/Documents/devarea/sandbox/rest-client/src/main/java/com/nonder/rest_app/config/RestClientConfig.java
-/Users/nihat.onder/Documents/devarea/sandbox/rest-client/src/main/java/com/nonder/rest_app/controller/ExampleController.java
-/Users/nihat.onder/Documents/devarea/sandbox/rest-client/src/main/java/com/nonder/rest_app/interceptor/GcpTokenProvider.java
-/Users/nihat.onder/Documents/devarea/sandbox/rest-client/src/main/java/com/nonder/rest_app/interceptor/OAuth2ClientInterceptor.java
+/Users/nihat.onder/Documents/devarea/sandbox/rest-client-classic/src/main/java/com/nonder/rest_app/Main.java
+/Users/nihat.onder/Documents/devarea/sandbox/rest-client-classic/src/main/java/com/nonder/rest_app/client/ProtectedApiClient.java
+/Users/nihat.onder/Documents/devarea/sandbox/rest-client-classic/src/main/java/com/nonder/rest_app/config/RestClientConfig.java
+/Users/nihat.onder/Documents/devarea/sandbox/rest-client-classic/src/main/java/com/nonder/rest_app/config/RestClientFactoryBean.java
+/Users/nihat.onder/Documents/devarea/sandbox/rest-client-classic/src/main/java/com/nonder/rest_app/controller/ExampleController.java
+/Users/nihat.onder/Documents/devarea/sandbox/rest-client-classic/src/main/java/com/nonder/rest_app/interceptor/GcpTokenProvider.java
+/Users/nihat.onder/Documents/devarea/sandbox/rest-client-classic/src/main/java/com/nonder/rest_app/interceptor/OAuth2ClientInterceptor.java
