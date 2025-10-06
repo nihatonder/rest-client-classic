@@ -11,30 +11,30 @@
            http://www.springframework.org/schema/mvc
            http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-   <mvc:annotation-driven/>
+   <mvc:annotation-driven />
 
-   <context:annotation-config/>
+   <context:annotation-config />
 
-   <context:property-placeholder location="classpath:application.properties"/>
+   <context:property-placeholder location="classpath:application.properties" />
 
-   <bean id="gcpTokenProvider" class="com.nonder.rest_app.interceptor.GcpTokenProvider"/>
+   <bean id="gcpTokenProvider" class="com.nonder.rest_app.interceptor.GcpTokenProvider" />
 
    <bean id="oauth2ClientInterceptor" class="com.nonder.rest_app.interceptor.OAuth2ClientInterceptor">
-      <constructor-arg ref="gcpTokenProvider"/>
+      <constructor-arg ref="gcpTokenProvider" />
    </bean>
 
    <bean id="restClient" class="com.nonder.rest_app.config.RestClientFactoryBean">
       <property name="interceptors">
          <list>
-            <ref bean="oauth2ClientInterceptor"/>
+            <ref bean="oauth2ClientInterceptor" />
          </list>
       </property>
    </bean>
    <bean id="protectedApiClient" class="com.nonder.rest_app.client.ProtectedApiClient">
-      <constructor-arg ref="restClient"/>
+      <constructor-arg ref="restClient" />
    </bean>
 
    <bean id="exampleController" class="com.nonder.rest_app.controller.ExampleController">
-      <constructor-arg ref="protectedApiClient"/>
+      <constructor-arg ref="protectedApiClient" />
    </bean>
 </beans>

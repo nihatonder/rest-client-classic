@@ -4,9 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
-import org.springframework.web.client.RestClientException;
 
 public class ProtectedApiClient {
 
@@ -16,7 +14,7 @@ public class ProtectedApiClient {
     private final String baseUrl;
 
     public ProtectedApiClient(RestClient restClient,
-                             @Value("${target.api.base-url}") String baseUrl) {
+            @Value("${target.api.base-url}") String baseUrl) {
         this.restClient = restClient;
         this.baseUrl = baseUrl;
     }
@@ -36,7 +34,6 @@ public class ProtectedApiClient {
 
             log.info("Received response with status code: {}", responseEntity.getStatusCode());
             return responseEntity.getBody();
-
         } catch (Throwable t) { // <-- CHANGE from Exception to Throwable
             log.error("A fatal error occurred during REST client call to {}: {}", url, t.getMessage(), t); // Log the full stack trace
             throw new RuntimeException(t);

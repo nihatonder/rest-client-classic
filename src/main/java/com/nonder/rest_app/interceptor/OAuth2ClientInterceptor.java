@@ -6,7 +6,6 @@ import org.springframework.http.HttpRequest;
 import org.springframework.http.client.ClientHttpRequestExecution;
 import org.springframework.http.client.ClientHttpRequestInterceptor;
 import org.springframework.http.client.ClientHttpResponse;
-import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
@@ -22,7 +21,7 @@ public class OAuth2ClientInterceptor implements ClientHttpRequestInterceptor {
 
     @Override
     public ClientHttpResponse intercept(HttpRequest request, byte[] body,
-                                       ClientHttpRequestExecution execution) throws IOException {
+            ClientHttpRequestExecution execution) throws IOException {
         // Get the ID token from GCP
         String token = tokenProvider.getIdToken();
 
@@ -30,7 +29,7 @@ public class OAuth2ClientInterceptor implements ClientHttpRequestInterceptor {
         request.getHeaders().setBearerAuth(token);
 
         log.debug("Added Authorization header to request: {} {}",
-                 request.getMethod(), request.getURI());
+                request.getMethod(), request.getURI());
 
         return execution.execute(request, body);
     }
